@@ -1,0 +1,32 @@
+<%- include('partial/head')%>
+<%- include('partial/nav')%>
+    <div class="container">
+        <div class="card">
+
+            <h1>Here are our Registered Homes</h1>
+
+            <% home.forEach(house => { %>
+
+                <div class="home">
+
+                    <img src="<%= house.image %>" alt="Home Image" width="300">
+
+                    <h2><%= house.HouseName %></h2>
+
+                    <p><strong>Location:</strong> <%= house.Location %></p>
+
+                    <p><strong>Price:</strong> ₹<%= house.Rent %> / night</p>
+
+                    <p><strong>Rating:</strong> ⭐ <%= house.Rating %></p>
+
+                    <hr>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+    </div>
+
+</body>
+</html>

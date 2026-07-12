@@ -1,0 +1,20 @@
+
+<%- include('partial/head')%>
+   <%- include('partial/nav')%>
+
+    <div class="container">
+        <div class="card">
+            <h1>Welcome to airbnb</h1>
+            <h2> Here are all the registered Homes:</h2>
+            <ul>
+                <% homes.forEach( home=>{%>
+                    <li> 
+                        <%= home.houseName %>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
