@@ -26,8 +26,15 @@ sellerRouter.post('/home',(req,res,next)=>{
     const { HouseName, price, location, rate , url}=req.body;
     const h = new Home(HouseName, price, location, rate, url);
     h.save();
-    res.render('seller2',{title:"Registration Successful"});
+    res.render('Seller/seller2',{title:"Registration Successful"});
 })
+sellerRouter.get("/list", (req, res, next) => {
+  //   const list = Home.fetchAll(());
+  // res.render("user", { title: "Registered Homes", home: list });
+  Home.fetchAll((list) => {
+    res.render("Seller/admin_home_list", { title: "Registered Homes", home: list });
+  });
+});
 
 exports.sellerRouter = sellerRouter;
 // exports.list=file;

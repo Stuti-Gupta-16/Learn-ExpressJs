@@ -1,7 +1,7 @@
 //here all the main connection part exists
 exports.addform = (req, res, next) => {
   // res.sendFile(path.join(rootDir,"views","seller.html"));
-  res.render("seller", { title: "AirBnB - Register Home" });
+  res.render("Seller/seller", { title: "AirBnB - Register Home" });
 };
 // const file = [];
 // exports.formFilled = (req, res, next) => {

@@ -275,4 +275,42 @@ button:hover{
         font-size:28px;
     }
 
+
+}
+
+.button{
+    background-color: #ff4d4d;
+    width: 100px;
+    height: 40px ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 10px;
+    margin-top: 20px;
+    transition: 0.5 ease-out ;
+}
+.button:hover{
+    transform: scale(1.2);
+    background-color:#bc2f2f;
+}
+.fav {
+    background-color: #ff4d4d;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    position: fixed;
+    top: 10%;
+    right: 1%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.d{
+    margin-top: 0;
+    display: flex;
+    gap:50px;
 }
