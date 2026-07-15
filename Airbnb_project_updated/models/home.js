@@ -5,6 +5,7 @@ const fs=require('fs');
 const { register } = require('module');
 //both of these are required for writting in the file
 const rootDir=path.dirname(require.main.filename);
+const homeDataPath=path.join(rootDir,"data","homes.json");
 // const register=[];
 //we will make it let as below we are declaring it 
 // let register=[];
@@ -28,7 +29,7 @@ module.exports=class Home{
         //     //also even after adding configuration ofthe nodemon we need to update the fetch command as here now if we reload the server the things are flushed as we are using register to fetch the data 
             
         // });
-
+        this.id=Math.random();//to assign random id
         Home.fetchAll((register) => {
           register.push(this);
           const data = path.join(rootDir, "data", "homes.json");
@@ -39,7 +40,7 @@ module.exports=class Home{
 
     }//this is a function that adds the data ;
     static fetchAll(callback){
-         const homeDataPath = path.join(rootDir, "data", "homes.json");//which was previously names as data
+        
         //  const fileContent=fs.readFile(data,(err,data)=>{
         //     if(err){
         //         register= [];
@@ -61,4 +62,12 @@ module.exports=class Home{
          //return register
          //this wont be able to be read by the html file as this function is async and error will be there as the data passed will be undefined to make it proper we need a call back function and when the work of fetching data is done we call the callback
         
+         //now we need a new method which finds data by id 
+         static findById(homeId,callback){
+            this.fetchAll(homes=>{
+                //this is a method for comparing the id
+                const found=homes.find(home=> home.id==homeId);
+                callback(found);
+            })
+         }
     }//this helps in fetching the data without creating an object as we know that we are not creating an individual object

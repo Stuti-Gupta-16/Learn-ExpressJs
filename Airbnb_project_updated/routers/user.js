@@ -28,4 +28,19 @@ userRouter.get("/fav", (req, res, next) => {
 userRouter.get("/index",(req,res,next)=>{
   res.render("index/booking",{title : "Index Page"});
 })
+
+userRouter.get("/:userId",(req,res,next)=>{
+  const id =req.params.userId;//it is a way of getting data from the url 
+  Home.findById(id,(name)=>{
+    if(!name){
+      res.redirect("/homes");
+      //this redirects the page 
+    }
+    else{
+      console.log("Home Details Found");
+      res.render("User/home_detail", { title: "Detail Page", home: [name] });
+    }
+  })
+ 
+});
 module.exports=userRouter;

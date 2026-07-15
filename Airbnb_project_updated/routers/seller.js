@@ -35,6 +35,8 @@ sellerRouter.get("/list", (req, res, next) => {
     res.render("Seller/admin_home_list", { title: "Registered Homes", home: list });
   });
 });
-
+sellerRouter.get("/edit",(req,res,next)=>{
+    res.render("Seller/edit",{title:"Edit Page"})
+})
 exports.sellerRouter = sellerRouter;
 // exports.list=file;

@@ -1,0 +1,69 @@
+<%- include('../partial/head') %>
+<%- include('../partial/nav') %>
+
+<div class="container">
+
+    <% home.forEach(house => { %>
+
+    <div class="details-page">
+
+        <img src="<%= house.photoUrl %>" alt="House Image" class="details-image">
+
+        <div class="details-body">
+
+            <div class="title-section">
+                <h1><%= house.houseName %></h1>
+                <span class="rating">⭐ <%= house.rating %></span>
+            </div>
+
+            <p class="location">
+                📍 <%= house.location %>
+            </p>
+
+            <div class="price-box">
+                ₹<%= house.price %>
+                <span>/ night</span>
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info-card">
+                    <h3>Property ID</h3>
+                    <p>#<%= house.id %></p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Location</h3>
+                    <p><%= house.location %></p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Rating</h3>
+                    <p>⭐ <%= house.rating %></p>
+                </div>
+
+            </div>
+
+            <div class="description">
+                <h2>About this property</h2>
+
+                <p>
+                    Experience a comfortable and memorable stay at
+                    <strong><%= house.houseName %></strong>.
+                    Located in <strong><%= house.location %></strong>,
+                    this property offers a relaxing atmosphere with excellent
+                    amenities and easy access to nearby attractions.
+                    Perfect for families, friends, and solo travellers.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <% }) %>
+
+</div>
+
+</body>
+</html>
