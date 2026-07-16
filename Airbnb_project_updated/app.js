@@ -13,8 +13,9 @@ app.get('/',(req,res,next)=>{
     res.render('home', { title: "AirBnB Home" });
 }
 );
-app.use('/user',userRouter);
 app.use(express.urlencoded());
+app.use('/user',userRouter);
+
 app.use('/seller',sellerRouter);
 app.use((req,res,next)=>{
     res.status(404).render('Page',{title:"Page Not Found"});

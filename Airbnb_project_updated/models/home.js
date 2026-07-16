@@ -34,7 +34,7 @@ module.exports=class Home{
           register.push(this);
           const data = path.join(rootDir, "data", "homes.json");
           fs.writeFile(data, JSON.stringify(register), (err) => {
-            console.log(err); 
+          
           });
         });
 
@@ -50,7 +50,6 @@ module.exports=class Home{
         //     // return register;
         //     callback(register);
         fs.readFile(homeDataPath,(err,data)=>{
-            console.log("file read",err,data);
             if(!err){
                 // registeredHome=JSON.parse(data);
                 callback(JSON.parse(data));

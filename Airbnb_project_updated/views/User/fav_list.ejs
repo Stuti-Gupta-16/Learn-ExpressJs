@@ -1,21 +1,40 @@
 <%- include('../partial/head') %>
 <%- include('../partial/nav') %>
 
-
-
 <div class="container">
+    <div class="card">
 
-    <div class="card error-card">
+        <h1>Here are our Favourite Homes</h1> 
+        
+        <% home.forEach(house => { %>
 
-        <h2>My Favourite</h2>
+            <div class="home">
 
-        <p>
-            All your favourite will be shown here
-        </p>
+                <img src="<%= house.photoUrl %>" alt="Home Image" width="300">
 
+                <h2><%= house.houseName %></h2>
+
+                <p><strong>Location:</strong> <%= house.location %></p>
+
+                <p style="color: #ff4d4d;"><strong>Price:</strong> ₹<%= house.price %> / night</p>
+
+                <p><strong>Rating:</strong> ⭐ <%= house.rating %></p>
+
+                <hr>
+                <div class="d">
+                <div class="button" style="background-color: rgb(3, 230, 3);">
+                    <div class="t1">Book</div>
+                </div>
+                <div class="button" style="background-color: rgb(0, 166, 255) ;">
+                    <a style="color: white; "  href="/user/<%=house.id%>"> Details</a>
+                </div>
+                
+                </div>
+            </div>
+
+        <% }) %>
 
     </div>
-
 </div>
 
 </body>

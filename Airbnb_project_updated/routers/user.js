@@ -10,6 +10,7 @@ const rootDir=path.dirname(require.main.filename);
 //how to access the data 
 
 const Home =require("../models/home");
+const Favourite=require("../models/fav");
 
 userRouter.get("/home", (req, res, next) => {
   //   const list = Home.fetchAll(());
@@ -21,9 +22,6 @@ userRouter.get("/home", (req, res, next) => {
 userRouter.get("/booking",(req,res,next)=>{
   res.render("User/booking",{title : "Booking Page"});
 })
-userRouter.get("/fav", (req, res, next) => {
-  res.render("User/fav_list", { title: "Favourite list" });
-});
 
 userRouter.get("/index",(req,res,next)=>{
   res.render("index/booking",{title : "Index Page"});
@@ -43,4 +41,33 @@ userRouter.get("/:userId",(req,res,next)=>{
   })
  
 });
+userRouter.get("/fav", (req, res, next) => {
+  console.log("Fav route hit");
+
+  Favourite.getFile((favourite) => {
+    console.log("Favourite array:", favourite);
+
+    Home.fetchAll((house) => {
+      console.log("House array:", house);
+
+      const favhome = house.filter((home) => favourite.includes(home.id));
+
+      console.log("Filtered:", favhome);
+
+      res.render("User/fav_list", {
+        title: "Favourite list",
+        home: favhome,
+      });
+    });
+  });
+});
+userRouter.post("/fav",(req,res,next)=>{
+  console.log("Element added to Fav",req.body.id);
+  console.log(req.body.id);
+  Favourite.add(req.body.id,error =>{
+    if(error) console.log(error);
+    res.redirect("/user/fav");
+  });
+  
+})
 module.exports=userRouter;
