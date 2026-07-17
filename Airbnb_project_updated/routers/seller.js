@@ -20,6 +20,7 @@ sellerRouter.get('/home',connect.addform);
 //how to export it from the controller file we have it there important thing to note is we can keep .urlcoded here only 
 
 const Home=require("../models/home");
+const { title } = require('process');
 sellerRouter.use(express.urlencoded());
 sellerRouter.post('/home',(req,res,next)=>{
     // const h=new Home(req.body.HouseName,req.body.price,req.body.location,req.body.rate,req.body.url);this is a lot of work rather do it like
@@ -35,8 +36,38 @@ sellerRouter.get("/list", (req, res, next) => {
     res.render("Seller/admin_home_list", { title: "Registered Homes", home: list });
   });
 });
-sellerRouter.get("/edit",(req,res,next)=>{
-    res.render("Seller/edit",{title:"Edit Page"})
+// sellerRouter.get("/edit",(req,res,next)=>{
+//     res.render("Seller/edit",{title:"Edit Page"})
+// })
+
+sellerRouter.get("/edit/:homeid",(req,res,next)=>{
+  const h=req.params.homeid;
+  const edit=req.query.editing;
+  
+  Home.findById(h,(r)=>{
+    if(!r) res.redirect("/seller/list");
+      else{
+    console.log(h, edit,r);
+    res.render("Seller/edit", { title: "Edit Page" ,home :r, val: edit} );
+    }
+  }); 
 })
+
+ sellerRouter.post("/edit", (req, res, next) => {
+   const { id, HouseName, price, location, rate, url } = req.body;
+   const h = new Home(HouseName, price, location, rate, url);
+   h.id = id;
+   h.save();
+   res.redirect("/seller/list");
+ });
+ sellerRouter.post("/delete/:homeid", (req, res, next) => {
+   const h = req.params.homeid;
+   console.log("This is delete page");
+   Home.deleteById(h,err=>{
+    if(err) console.log("Error is there");
+    res.redirect("/seller/list");
+   })
+   
+ });
 exports.sellerRouter = sellerRouter;
 // exports.list=file;

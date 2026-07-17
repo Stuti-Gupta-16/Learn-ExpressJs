@@ -24,23 +24,41 @@ userRouter.get("/booking",(req,res,next)=>{
 })
 
 userRouter.get("/index",(req,res,next)=>{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   res.render("index/booking",{title : "Index Page"});
 })
 
-userRouter.get("/:userId",(req,res,next)=>{
-  const id =req.params.userId;//it is a way of getting data from the url 
-  Home.findById(id,(name)=>{
-    if(!name){
-      res.redirect("/homes");
-      //this redirects the page 
-    }
-    else{
-      console.log("Home Details Found");
-      res.render("User/home_detail", { title: "Detail Page", home: [name] });
-    }
-  })
- 
-});
+
 userRouter.get("/fav", (req, res, next) => {
   console.log("Fav route hit");
 
@@ -69,5 +87,26 @@ userRouter.post("/fav",(req,res,next)=>{
     res.redirect("/user/fav");
   });
   
+})
+
+userRouter.get("/:userId", (req, res, next) => {
+  const id = req.params.userId; //it is a way of getting data from the url
+  console.log("this is the /userid page");
+  Home.findById(id, (name) => {
+    if (!name) {
+      res.redirect("/user/home");
+      //this redirects the page
+    } else {
+      console.log("Home Details Found");
+      res.render("User/home_detail", { title: "Detail Page", home: [name] });
+    }
+  });
+});
+userRouter.post("/delete/:homeid",(req,res,next)=>{
+  const id= req.params.homeid;
+  Favourite.deleteById(id,err=>{
+    if(err) console.log("Error occured");
+    res.redirect("/user/fav");
+  })
 })
 module.exports=userRouter;

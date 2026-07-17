@@ -7,7 +7,7 @@
         <div class="card">
             <h1>Register Your Home on AirBnB</h1>
 
-            <form action="/seller/home" method="post">
+            <form action="<%= val? /seller/edit : /seller/home %>" method="post">
                 <input type="text" placeholder="House Name"  name="HouseName" required autofocus>
 
                 <input type="number" placeholder="Price Per Night" name="price" required>

@@ -28,7 +28,9 @@
                 <div class="button" style="background-color: rgb(0, 166, 255) ;">
                     <a style="color: white; "  href="/user/<%=house.id%>"> Details</a>
                 </div>
-                
+                <form action="/user/delete/<%= house.id %>" method="post">
+                    <button type="submit"> Delete</button>
+                </form>
                 </div>
             </div>
 

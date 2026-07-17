@@ -24,10 +24,12 @@
             </div>
             <div class="d">
                 <div class="button">
-                    <div class="t1">Edit</div>
+                    <a href="/seller/edit/<%=house.id%>?editing=true" style="color: white;">Edit</a>
                 </div>
                 <div class="button">
-                    <div class="t1">Delete</div>
+                   <form action="/seller/delete/<%=house.id%>" method="post">
+                    <button type="submit">Delete</button>
+                   </form>
                 </div>
             </div>
         <% }) %>
