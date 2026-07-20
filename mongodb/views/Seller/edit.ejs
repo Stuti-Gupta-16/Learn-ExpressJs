@@ -1,0 +1,30 @@
+<%- include('../partial/head')%>
+<%- include('../partial/nav_s')%>
+
+
+    <!-- Form Container -->
+    <div class="container">
+        <div class="card">
+            <h1><%=val ? "Edit" : "Register"%>  Your Home on AirBnB</h1>
+
+            <form action="<%= val? '/seller/edit' : '/seller/home' %>" method="post">
+                <input type="hidden" name="id" value="<%= val ? home._id : ''%>">
+                <input type="text" placeholder="House Name"  name="HouseName" value="<%= val ? home.houseName : '' %>"  required autofocus>
+
+                <input type="number" placeholder="Price Per Night" name="price" value="<%= val ? home.price : '' %>" required>
+
+                <input type="text" placeholder="Location" name="location" value="<%= val ? home.location : '' %>"  required>
+
+                <input type="number" step="0.1" min="1" max="5" placeholder="Rating" name="rate" value="<%= val ? home.rating : '' %>" required>
+
+                <input type="url" placeholder="Enter Photo URL"  name="url" value="<%= val ? home.photoUrl : '' %>"  required>
+                <textarea placeholder="Enter Description"  name="description" required><%= val ? home.description : '' %></textarea>
+
+
+                <button type="submit"><%= val ?"Update":"Submit"%></button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

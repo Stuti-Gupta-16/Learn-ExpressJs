@@ -1,0 +1,41 @@
+<%- include('../partial/head') %>
+<%- include('../partial/nav') %>
+
+<div class="container">
+    <div class="card">
+
+        <h1>Here are our Registered Homes</h1> 
+        <div class="fav"><a href="/user/fav" style="color: white; font-size: 25px;">♡</a></div>
+        <% home.forEach(house => { %>
+
+            <div class="home">
+
+                <img src="<%= house.photoUrl %>" alt="Home Image" width="300">
+
+                <h2><%= house.houseName %></h2>
+
+                <p><strong>Location:</strong> <%= house.location %></p>
+
+                <p style="color: #ff4d4d;"><strong>Price:</strong> ₹<%= house.price %> / night</p>
+
+                <p><strong>Rating:</strong> ⭐ <%= house.rating %></p>
+
+                <hr>
+                <div class="d">
+                <div class="button" style="background-color: rgb(3, 230, 3);">
+                    <div class="t1">Book</div>
+                </div>
+                <div class="button" style="background-color: rgb(0, 166, 255) ;">
+                    <a style="color: white; "  href="/user/<%=house._id%>"> Details</a>
+                </div>
+                <%- include('../partial/fav',{home: house}) %>
+                </div>
+            </div>
+
+        <% }) %>
+
+    </div>
+</div>
+
+</body>
+</html>

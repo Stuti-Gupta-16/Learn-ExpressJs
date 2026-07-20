@@ -1,0 +1,66 @@
+<%- include('../partial/head') %>
+<%- include('../partial/nav') %>
+
+<div class="container">
+
+    
+
+    <div class="details-page">
+
+        <img src="<%= home.photoUrl %>" alt="House Image" class="details-image">
+
+        <div class="details-body">
+
+            <div class="title-section">
+                <h1><%= home.houseName %></h1>
+                <span class="rating">⭐ <%= home.rating %></span>
+            </div>
+
+            <p class="location">
+                📍 <%= home.location %>
+            </p>
+
+            <div class="price-box">
+                ₹<%= home.price %>
+                <span>/ night</span>
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info-card">
+                    <h3>Property ID</h3>
+                    <p>#<%= home._id %></p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Location</h3>
+                    <p><%= home.location %></p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Rating</h3>
+                    <p>⭐ <%= home.rating %></p>
+                </div>
+
+            </div>
+
+            <div class="description">
+                <h2>About this property</h2>
+
+                <p>
+                    <%= home.description%>
+                </p>
+            </div>
+             <%- include('../partial/fav',{home: home}) %>
+
+        </div>
+
+    </div>
+   
+
+
+
+</div>
+
+</body>
+</html>

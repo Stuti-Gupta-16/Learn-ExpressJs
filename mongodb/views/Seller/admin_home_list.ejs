@@ -1,0 +1,41 @@
+<%- include('../partial/head') %>
+<%- include('../partial/nav_s') %>
+
+<div class="container">
+    <div class="card">
+
+        <h1>Hey Host!, here are all the homes </h1>
+
+        <% home.forEach(house => { %>
+
+            <div class="home">
+
+                <img src="<%= house.photoUrl %>" alt="Home Image" width="300">
+
+                <h2><%= house.houseName %></h2>
+
+                <p><strong>Location:</strong> <%= house.location %></p>
+
+                <p><strong>Price:</strong> ₹<%= house.price %> / night</p>
+
+                <p><strong>Rating:</strong> ⭐ <%= house.rating %></p>
+
+                <hr>
+            </div>
+            <div class="d">
+                <div class="button">
+                    <a href="/seller/edit/<%=house._id%>?editing=true" style="color: white;">Edit</a>
+                </div>
+                <div class="button">
+                   <form action="/seller/delete/<%=house._id%>" method="post">
+                    <button type="submit">Delete</button>
+                   </form>
+                </div>
+            </div>
+        <% }) %>
+
+    </div>
+</div>
+
+</body>
+</html>
